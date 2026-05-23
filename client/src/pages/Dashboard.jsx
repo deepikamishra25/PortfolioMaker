@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import ProfileForm from './ProfileForm.jsx';
 import {
   Sparkles,
   Plus,
@@ -373,6 +375,11 @@ const Dashboard = () => {
         {/* 3. SCROLLABLE WORKING SPACE */}
         {/* ============================================================== */}
         <div className="flex-1 overflow-y-auto pr-2 space-y-6">
+          {/* PROFILE FORM — shown when activeMenu === 'profile' */}
+          {activeMenu === 'profile' ? (
+            <ProfileForm />
+          ) : (
+            <>
           {/* USER GREETING BANNER */}
           <div className="relative p-8 rounded-3xl overflow-hidden glass-panel border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
             {/* Visual gradient overlays */}
@@ -751,8 +758,11 @@ const Dashboard = () => {
               </div>
             )}
           </div>
+        </>
+        )}
         </div>
       </div>
+      <Toaster toastOptions={{ duration: 4000 }} />
     </div>
   );
 };

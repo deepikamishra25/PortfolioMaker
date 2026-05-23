@@ -25,6 +25,26 @@ const userSchema = new mongoose.Schema(
       required: [true, 'Please add a password'],
       minlength: [6, 'Password must be at least 6 characters'],
     },
+    displayName: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+    bio: {
+      type: String,
+      maxlength: [500, 'Bio cannot exceed 500 characters'],
+      default: '',
+    },
+    profileImage: {
+      type: String,
+      default: '',
+    },
+    socialLinks: {
+      github:   { type: String, default: '' },
+      linkedin: { type: String, default: '' },
+      twitter:  { type: String, default: '' },
+      website:  { type: String, default: '' },
+    },
   },
   {
     timestamps: true,

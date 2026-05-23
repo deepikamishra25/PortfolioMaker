@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import portfolioRoutes from './routes/portfolioRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 // Load environment variables
@@ -26,6 +27,10 @@ app.get('/ping', (req, res) => {
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/portfolios', portfolioRoutes);
+app.use('/api/users', userRoutes);
+
+// Static file serving for uploaded avatars
+app.use('/uploads', express.static('uploads'));
 
 // Error Middleware
 app.use(notFound);
